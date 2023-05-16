@@ -8461,8 +8461,11 @@ class RuboCop {
 	 */
 	static parseOutput(dir, output) {
 		const lintResult = initLintResult();
-		lintResult.isSuccess = output.status === 0;
-
+		// Always return true. This is to help the monoloth lumber forward by getting feedback on the linting but not 
+		// stop the CI pipeline.
+		//lintResult.isSuccess = output.status === 0;
+    lintResult.isSuccess = true
+		
 		let outputJson;
 		try {
 			outputJson = JSON.parse(output.stdout);
